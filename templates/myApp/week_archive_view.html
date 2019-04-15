@@ -1,0 +1,22 @@
+{% extends "home.html" %}
+
+{% block title %}
+    WeekArchiveView演示
+{% endblock %}
+
+{% block content %}
+    <p>这是{{ year }}年{{ week }}周的博客</p>
+    <ul>
+        {% for blog in blogs %}
+            <a href="{% url "myApp:detail_view"  blog.pk%}">{{ blog.title }}</a>
+            <br>
+        {% endfor %}
+    </ul>
+
+    <p>分页</p>
+    <ul>
+        {% for i in page_range %}
+            <li><a href='{% url "myApp:week_archive_view" year week %}?page={{ i }}'>{{ i }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

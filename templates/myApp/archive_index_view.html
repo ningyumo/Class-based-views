@@ -1,0 +1,27 @@
+{% extends "home.html" %}
+
+{% block title %}
+    ArchiveIndexView演示
+{% endblock %}
+
+{% block content %}
+    <h3>一共{{ paginator.count }}篇博客</h3>
+    <ul>
+        {% for blog in latest_blogs %}
+            <a href="{% url "myApp:detail_view"  blog.pk%}"><p>{{ blog.title }}</p></a>
+            <p>{{ blog.author }}--{{ blog.created_time }}</p>
+        {% endfor %}
+    </ul>
+    <p>年份</p>
+    <ul>
+        {% for date in date_list %}
+            <li><a href="{% url "myApp:year_archive_view" date.year %}">{{ date | date:"Y" }}</a></li>
+        {% endfor %}
+    </ul>
+    <p>分页</p>
+    <ul>
+        {% for i in page_range %}
+            <li><a href='{% url "myApp:archive_index_view" %}?page={{ i }}'>{{ i }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

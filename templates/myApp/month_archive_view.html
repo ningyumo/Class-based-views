@@ -1,0 +1,29 @@
+{% extends "home.html" %}
+
+{% block title %}
+    MonthArchiveView演示
+{% endblock %}
+
+{% block content %}
+    <p>这是{{ year }}年{{ month }}的博客</p>
+    <ul>
+        {% for blog in blogs %}
+            <a href="{% url "myApp:detail_view"  blog.pk%}">{{ blog.title }}</a>
+            <br>
+        {% endfor %}
+    </ul>
+    <p>日期</p>
+    <ul>
+        {% for date in date_list %}
+            <li>
+                <a href="{% url "myApp:day_archive_view" date.year date.month date.day %}">{{ date | date:"Y-m-d" }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <p>分页</p>
+    <ul>
+        {% for i in page_range %}
+            <li><a href='{% url "myApp:month_archive_view" year month %}?page={{ i }}'>{{ i }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "home.html" %}
+
+{% block title %}
+    TodayArchiveView演示
+{% endblock %}
+
+{% block content %}
+    <p>这是{{ year }}年{{ month }}月{{ day }}日的博客</p>
+    <ul>
+        {% for blog in blogs %}
+            <a href="{% url "myApp:detail_view"  blog.pk%}">{{ blog.title }}</a>
+            <br>
+        {% endfor %}
+    </ul>
+    <p>日期</p>
+    <p>分页</p>
+    <ul>
+        {% for i in page_range %}
+            <li><a href='{% url "myApp:today_archive_view" year month day %}?page={{ i }}'>{{ i }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

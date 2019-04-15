@@ -1,0 +1,20 @@
+{% extends "home.html" %}
+
+{% block title %}
+    ListView演示
+{% endblock %}
+
+{% block content %}
+    <h3>一共{{ paginator.count }}篇博客</h3>
+    <ul>
+        {% for blog in blogs %}
+            <a href="{% url "myApp:detail_view"  blog.pk%}"><p>{{ blog.title }}</p></a>
+            <p>{{ blog.author }}--{{ blog.created_time }}</p>
+        {% endfor %}
+    </ul>
+    <ul>
+        {% for i in page_range %}
+            <li><a href='{% url "myApp:list_view" %}?page={{ i }}'>{{ i }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

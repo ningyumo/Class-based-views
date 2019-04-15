@@ -1,0 +1,17 @@
+{% extends "home.html" %}
+
+{% block title %}
+    TemplateView演示
+{% endblock %}
+
+{% block content %}
+    <h1>最近5篇博客</h1>
+    <ul>
+        {% for blog in lastest_blog %}
+            <li>
+                <a href="{% url "myApp:detail_view"  blog.pk  %}">{{ blog.title }}</a>
+                <p>{{ blog.text }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

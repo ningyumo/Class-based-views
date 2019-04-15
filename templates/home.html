@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}通用视图展示列表{% endblock %}</title>
+</head>
+<body>
+    <p><a href="{% url "home" %}">home</a></p>
+    {% block content %}
+        <ul>
+            <li><a href="{% url "myApp:view" %}">View</a></li>
+            <li><a href="{% url "myApp:template_view" %}">TemplateView</a></li>
+            <li><a href="{% url "myApp:redirect_view" %}">RedirectView</a></li>
+            <li><a href="{% url "myApp:list_view" %}">ListView/DetailView/UpdateView/DeleteView</a></li>
+            <li><a href="{% url "myApp:form_view" %}">FormView</a></li>
+            <li><a href="{% url "myApp:create_view" %}">CreateView</a></li>
+            <li><a href="{% url "myApp:archive_index_view" %}">ArchiveIndexView/YearArchiveView/MonthArchiveView/DayArchiveView</a></li>
+            <li><a href="{% url "myApp:week_archive_view" 2019 14%} ">WeekArchiveView</a></li>
+            <li><a href="{% url "myApp:today_archive_view" %}">TodayArvhiveView/DateDetailView</a></li>
+        </ul>
+    {% endblock %}
+</body>
+</html>

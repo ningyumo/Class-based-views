@@ -1,0 +1,27 @@
+{% extends "home.html" %}
+
+{% block title %}
+    YearArchiveView演示
+{% endblock %}
+
+{% block content %}
+    <p>这是{{ year }}年的博客</p>
+    <ul>
+        {% for blog in blogs %}
+            <a href="{% url "myApp:detail_view"  blog.pk%}">{{ blog.title }}</a>
+            <br>
+        {% endfor %}
+    </ul>
+    <p>月份</p>
+    <ul>
+        {% for date in date_list %}
+            <li><a href="{% url "myApp:month_archive_view" date.year date.month %}">{{ date | date:"Y-m" }}<br></a></li>
+        {% endfor %}
+    </ul>
+    <p>分页</p>
+    <ul>
+        {% for i in page_range %}
+            <li><a href='{% url "myApp:year_archive_view" year %}?page={{ i }}'>{{ i }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
